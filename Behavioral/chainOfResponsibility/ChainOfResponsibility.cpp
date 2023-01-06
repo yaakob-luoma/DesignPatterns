@@ -1,22 +1,24 @@
 
-#include <string>
 #include <iostream>
+#include <string>
+#include <vector>
 
-class Handler
+
+class AbstractInterfaceHandler
 {
 public:
-    virtual Handler *setNext( Handler *handler ) = 0;
+    virtual AbstractInterfaceHandler *setNext( AbstractInterfaceHandler *handler ) = 0;
     virtual std::string handle( std::string request ) = 0;
 };
 
-class AbstractHandler : public Handler
+class DefaultHandler : public AbstractInterfaceHandler
 {
 private:
-    Handler *nextHandler;
+    AbstractInterfaceHandler *nextHandler;
 
 public:
-    AbstractHandler() : nextHandler( nullptr ) {}
-    Handler* setNext( Handler *handler ) override
+    DefaultHandler() : nextHandler( nullptr ) {}
+    AbstractInterfaceHandler* setNext( AbstractInterfaceHandler *handler ) override
     {
         this->nextHandler = handler;
         return handler;
@@ -31,7 +33,7 @@ public:
     }
 };
 
-class MonkeyHandler : public AbstractHandler
+class MonkeyHandler : public DefaultHandler
 {
 public:
     std::string handle( std::string request ) override
@@ -42,12 +44,12 @@ public:
         }
         else
         {
-            return AbstractHandler::handle(request);
+            return DefaultHandler::handle(request);
         }
     }
 };
 
-class SquirrelHandler : public AbstractHandler
+class SquirrelHandler : public DefaultHandler
 {
 public:
     std::string handle( std::string request ) override
@@ -58,12 +60,12 @@ public:
         }
         else
         {
-            return AbstractHandler::handle(request);
+            return DefaultHandler::handle(request);
         }
     }
 };
 
-class DogHandler : public AbstractHandler
+class DogHandler : public DefaultHandler
 {
 public:
     std::string handle( std::string request ) override
@@ -74,12 +76,12 @@ public:
         }
         else
         {
-            return AbstractHandler::handle(request);
+            return DefaultHandler::handle(request);
         }
     }
 };
 
-void clientCode( Handler &handler )
+void clientCode( AbstractInterfaceHandler &handler )
 {
     std::vector<std::string> food = {"Nut", "Banna", "Cup of coffee"};
     for ( const std::string &f : food )
