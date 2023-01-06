@@ -1,8 +1,6 @@
 #ifndef STATE_H
 #define STATE_H
 
-#include <QDebug>
-
 #include "Context.h"
 
 class State

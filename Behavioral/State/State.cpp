@@ -89,16 +89,4 @@ public:
     }
 };
 
-void clientCode()
-{
-    Context *context = new Context( new ConcreteStateA );
-    context->request1();
-    context->request2();
-    delete context;
-}
 
-int main()
-{
-    clientCode();
-    return 0;
-}
