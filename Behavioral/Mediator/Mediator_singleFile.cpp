@@ -87,7 +87,7 @@ void clientCode()
     std::cout << "Client tiggers operation A.\n";
     c1->doA();
     std::cout << "\n";
-    st::cout << "Client triggers operation B.\n";
+    std::cout << "Client triggers operation B.\n";
     c2->doD();
 
     delete c1;
