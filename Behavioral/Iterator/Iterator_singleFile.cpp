@@ -1,14 +1,21 @@
-
+#ifndef INCLUDE_IOSTREAM
 #include <iostream>
+#define INCLUDE_IOSTREAM
+#endif
+
+#ifndef INCLUDE_STRING
 #include <string>
+#define INCLUDE_STRING
+#endif
+
+#ifndef INCLUDE_VECTOR
 #include <vector>
+#define INCLUDE_VECTOR
+#endif
 
 template< typename T, typename U>
 class Iterator
 {
-private:
-    U *data_ptr;
-    iter_type itr;
 public:
     typedef typename std::vector<T>::iterator iter_type;
     Iterator(U *data_ptr, bool reverse = false)
@@ -32,6 +39,10 @@ public:
     {
         return itr;
     }
+
+private:
+    U *data_ptr;
+    iter_type itr;
 };
 
 template< class T>
