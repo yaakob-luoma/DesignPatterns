@@ -35,6 +35,7 @@ void clientCode()
     Iterator< Data, Container<Data> > *it2 = container2.createIterator();
     for ( it2->first(); !it2->isDone(); it2->next() )
     {
+        /* TODO: may need an operator<< for iter_type. In this example Data is an int and should be fine */
         std::cout << *it2->current() << std::endl;
     }
 
